@@ -1,16 +1,13 @@
 import * as _ from 'lodash';
 
 const form = document.querySelector('.feedback-form');
-
-let formData = {email: '', message: ''};
+const emailField = form.elements.email;
+const messageField = form.elements.message;
+let formData = {};
 const STORAGE_KEY = "feedback-form-state";
-
 form.addEventListener('input', _.throttle(onInputTracker, 500));
-
 form.addEventListener('submit', onFormSubmit);
-
 populateText();
-
 
 function onInputTracker(evt) {
     formData[evt.target.name] = evt.target.value;
@@ -20,7 +17,6 @@ function onInputTracker(evt) {
 function onFormSubmit(evt) {
     evt.preventDefault();
     console.log(formData);
-    formData = {email: '', message: ''};
     evt.currentTarget.reset();
     localStorage.removeItem(STORAGE_KEY);
 }
@@ -28,8 +24,8 @@ function onFormSubmit(evt) {
 function populateText() {
     const savedMessage = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (savedMessage) {
-        form.elements.email.value = savedMessage.email;
-        form.elements.message.value = savedMessage.message;
+        emailField.value = savedMessage.email || '';
+        messageField.value = savedMessage.message || '';
         formData = savedMessage;
     }
 }
