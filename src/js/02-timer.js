@@ -51,10 +51,14 @@ const timer = {
 
 function renderTime(date) {
     const { days, hours, minutes, seconds } = convertMs(date);
-    dayEl.textContent = days.toString().padStart(2, '0');
-    hoursEl.textContent = hours.toString().padStart(2, '0');
-    minEl.textContent = minutes.toString().padStart(2, '0');
-    secEl.textContent = seconds.toString().padStart(2, '0');
+    toStringEl(dayEl, days);
+    toStringEl(hoursEl, hours);
+    toStringEl(minEl, minutes);
+    toStringEl(secEl, seconds);
+}
+
+function toStringEl(output, elem) {
+    output.textContent = elem.toString().padStart(2, '0');
 }
 
 function updateTimer(date) {
