@@ -1,7 +1,6 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import Notiflix from 'notiflix';
-const { toUpper } = require("lodash");
 
 const inputEl = document.querySelector('#datetime-picker');
 
